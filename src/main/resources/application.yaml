@@ -1,0 +1,26 @@
+server:
+  port: ${OTUS_APP_PORT:8000}
+  servlet:
+    encoding:
+      charset: UTF-8
+spring:
+  jpa:
+    show-sql: ${SHOW_SQL:false}
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+  datasource:
+    url: jdbc:postgresql://${OTUS_DB_HOST}:${OTUS_DB_PORT}/${OTUS_DB_NAME}
+    username: ${OTUS_DB_USERNAME}
+    password: ${OTUS_DB_PASSWORD}
+    driver-class-name: "org.postgresql.Driver"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true

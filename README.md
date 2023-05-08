@@ -1,16 +1,20 @@
 # USER-PROJECT
 
-##   Базовые сущности Кubernetes: Service, Ingress
+##   Prometheus. Grafana
 
 #### Endpoint curl http://arch.homework/user
 
-- Развертывание из каталога \otus_users\helm\. Манифесты развертываются в namespace user
+- Развертывание из каталога \otus_users_prometheus\helm\. Манифесты развертываются в namespace user
 
       helm -n user upgrade --install --create-namespace user .
 - Удаление развернутых ресурсов
 
+      helm -n user delete user
       kubectl delete namespace user
-- Проверить можно с помощью Postman: перечень вызова API через curl (user_api.txt) 
- 
-  и postmen collections (user_collections.postman_test_run.json)
+- Dashboard  из Grafana можно посмотреть User_service_prometheus_grafana.docx
+
+
+
+- Импортировать Dashboard в Grafana можно из json_grafana.txt
+
 

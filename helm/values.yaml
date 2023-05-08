@@ -1,0 +1,50 @@
+app:
+  name: myapp
+  secretName: app-secret
+  configmapName: app-configmap
+  portNumber: 8000
+  ingressHost: arch.homework
+  image: zagurskaya/users-image:3.0.0
+  resources:
+    limits:
+      cpu: "1"
+      memory: "1000Mi"
+    requests:
+      cpu: "0.1"
+      memory: "100Mi"
+db:
+  pgUsername: postgres
+  password: cXdlcg==
+  port: 5432
+postgresql:
+  existingSecret: pg-secret
+  postgresqlDatabase: user
+  postgresqlUsername: app
+  persistence:
+    size: 1Gi
+    enabled: false
+  image:
+    debug: true
+  fullnameOverride: myapp-pg
+  service:
+    type: NodePort
+    nodePort: 30530
+  volumePermissions:
+    enabled: true
+  resources:
+    limits:
+      cpu: "1"
+      memory: "1000Mi"
+    requests:
+      cpu: "0.1"
+      memory: "100Mi"
+
+pgchecker:
+  image:
+    repository: docker.io/busybox
+    tag: 1.32
+    pullPolicy: IfNotPresent
+
+metrics:
+  serviceMonitor:
+    enabled: true

@@ -1,0 +1,5 @@
+# Ignore everything
+*
+
+# except needed files
+!build/libs/app.jar
